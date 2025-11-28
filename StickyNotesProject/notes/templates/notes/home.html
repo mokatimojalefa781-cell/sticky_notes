@@ -1,0 +1,31 @@
+{% extends "notes/base.html" %}
+{% load static %}
+{% block content %}
+<section class="hero">
+  <div class="hero-grid">
+    <h2>Your Notes</h2>
+    <p class="muted">Quickly capture ideas — colourful blocks make it easy to scan.</p>
+  </div>
+</section>
+
+<section class="notes-grid">
+  {% for note in notes %}
+    <article class="note-card">
+      <div class="note-header">
+        <h3 class="note-title">{{ note.title }}</h3>
+        <small class="note-date">{{ note.created_at|date:"SHORT_DATETIME_FORMAT" }}</small>
+      </div>
+      <p class="note-content">{{ note.content|linebreaksbr }}</p>
+      <div class="note-actions">
+        <a class="link" href="{% url 'edit-note' note.id %}">Edit</a>
+        <form class="inline-form" action="{% url 'delete-note' note.id %}" method="post">
+          {% csrf_token %}
+          <button class="link link-delete" type="submit">Delete</button>
+        </form>
+      </div>
+    </article>
+  {% empty %}
+    <p class="no-notes">No notes yet — create your first colourful note!</p>
+  {% endfor %}
+</section>
+{% endblock %}

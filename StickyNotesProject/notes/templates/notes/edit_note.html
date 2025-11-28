@@ -1,0 +1,14 @@
+{% extends "notes/base.html" %}
+{% block content %}
+<div class="form-card">
+  <h2>Edit Note</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-actions">
+      <button class="btn btn-accent" type="submit">Save</button>
+      <a class="btn" href="{% url 'home' %}">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <title>Sticky Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Sticky Notes</h1>
+      <nav>
+        <a class="btn" href="{% url 'home' %}">Home</a>
+        <a class="btn btn-accent" href="{% url 'add-note' %}">New Note</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; {{ year }} Sticky Notes App</p>
+  </footer>
+</body>
+</html>
